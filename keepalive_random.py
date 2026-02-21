@@ -8,10 +8,11 @@ keepalive_random.py
 
 import asyncio
 import aiohttp
-import random
-import time
 import logging
+import os
+import random
 import sys
+import time
 from urllib.parse import urlparse, urlunparse, urlencode, parse_qsl
 
 # ------------------------- КОНФИГ -------------------------
@@ -35,8 +36,8 @@ MAX_RETRIES = 3
 # Базовый экспоненциальный бэкофф (сек), умножается на 2^n
 BACKOFF_BASE = 5
 
-# Логи — файл
-LOGFILE = "/var/log/keepalive_random.log"  # можно изменить на локальный если нет прав
+# Логи — файл (на сервере без root задайте KEEPALIVE_LOGFILE, например ./keepalive.log)
+LOGFILE = os.environ.get("KEEPALIVE_LOGFILE", "/var/log/keepalive_random.log")
 
 # User-Agents (пример набора, можно расширить)
 USER_AGENTS = [
