@@ -9,7 +9,8 @@ User=root
 # Путь к клону репозитория (при установке в домашнюю папку смените на /home/USER/pinger и User=USER)
 WorkingDirectory=/opt/pinger
 Environment="KEEPALIVE_LOGFILE=/var/log/keepalive_random.log"
-ExecStart=/usr/bin/python3 -u keepalive_random.py
+# Используем Python из venv (создайте: python3 -m venv venv && venv/bin/pip install -r requirements.txt)
+ExecStart=/opt/pinger/venv/bin/python -u keepalive_random.py
 Restart=always
 RestartSec=10
 StandardOutput=journal
